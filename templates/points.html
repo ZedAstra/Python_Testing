@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUDLFT Points display</title>
+</head>
+<body>
+    <!--Equivalent of Svelte's 
+{each clubs as club}
+    <p>{club.email} has {club.points} points</p>
+{/each}-->
+    <h2>Points Summary</h2>
+    <ul>
+        {% for club in clubs %}
+        <li>{{club.name}} has {{club.points}} points</li>
+        {% endfor %}
+    </ul>
+    <a href="{{url_for('pointsDisplay')}}">Refresh</a>
+    <a href="{{url_for('summary')}}">Back</a>
+</body>
+</html>

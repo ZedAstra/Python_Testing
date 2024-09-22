@@ -59,7 +59,7 @@ Merci !
 
     - Flask requires that you set an environmental variable to the python file. However you do that, you'll want to set the file to be <code>server.py</code>. Check [here](https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application) for more details
 
-    - You should now be ready to test the application. In the directory, type either <code>flask run</code> or <code>python -m flask run</code>. The app should respond with an address you should be able to go to using your browser.
+    - You should now be ready to test the application. In the directory, type either <code>python -m flask run</code>, <code>run</code> in CMD or <code>./run</code> in PowerShell. The app should respond with an address you should be able to go to using your browser.
 
 4. Current Setup
 
