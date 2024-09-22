@@ -52,7 +52,6 @@ def index():
 @app.route('/summary',methods=['GET','POST'])
 def summary():
     competitions = models.Competition.select()
-    print(request.form)
     if check_cookie(request) == True:
         if request.form.get('email'):
             q = models.Club().select().where(models.Club.email == request.form['email']).limit(1)
@@ -74,7 +73,7 @@ def summary():
         clubs_trouves = [club for club in models.Club.select() if club.email == request.form['email']]
         if clubs_trouves:
             club = clubs_trouves[0]
-            q = models.User().select().where(models.User.linked_club == request.form['email']).limit(1)
+            q = models.User().select().where(models.User.linked_club == club).limit(1)
             if len(q) == 0:
                 res = Response(render_template('welcome.html',club=club,competitions=competitions))
                 res.headers["Set-Cookie"] = create_cookie(club)
