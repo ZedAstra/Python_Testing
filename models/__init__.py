@@ -1,4 +1,5 @@
 from .database import db
+from .competition import Competition
 from .club import Club
 from .user import User
-from .competition import Competition
+from .participation import Participation
