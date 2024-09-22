@@ -2,36 +2,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
     <title>Summary | GUDLFT Registration</title>
 </head>
 <body>
-        <h2>Welcome, {{club['email']}} </h2><a href="{{url_for('logout')}}">Logout</a>
-
-    {% with messages = get_flashed_messages()%}
-    {% if messages %}
+    <div class="h-12 flex flex-row flex-1 bg-base-200 items-center gap-4 px-2">
+        <h2 class="prose">Welcome, {{club['email']}}</h2>
+        Points available: {{club['points']}}
+        <a class="btn btn-sm btn-primary" href="/pointsdisplay">Point table</a>
+        <div class="flex flex-row flex-1 justify-end">
+            <a class="btn btn-sm btn-primary" href="{{url_for('logout')}}">Logout</a>
+        </div>
+    </div>
+    <div class="flex flex-col p-16">
+        {% with messages = get_flashed_messages()%}
+        {% if messages %}
         <ul>
-       {% for message in messages %}
-            <li>{{message}}</li>
-        {% endfor %}
-       </ul>
-    {% endif%}
-    Points available: {{club['points']}}
-    <a href="/pointsdisplay"><h3>Or click here to see the point table</h3></a>
-    <h3>Competitions:</h3>
-    <ul>
-        {% for comp in competitions%}
-        <li>
-            {{comp['name']}}<br />
-            Date: {{comp['date']}}</br>
-            Number of Places: {{comp['numberOfPlaces']}}
-            {%if comp['numberOfPlaces']|int >0%}
-            <a href="{{ url_for('book',competition=comp['name'],club=club['name']) }}">Book Places</a>
-            {%endif%}
-        </li>
-        <hr />
-        {% endfor %}
-    </ul>
-    {%endwith%}
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif%}
 
+        <h3>Competitions:</h3>
+        <ul class="p-1">
+            {% for comp in competitions%}
+            <li>
+                <div class="card bg-neutral shadow-xl p-8 w-full gap-2 prose">
+                    {{comp['name']}}<br />
+                    Date: {{comp['date']}}</br>
+                    Number of Places: {{comp['numberOfPlaces']}}
+                    {% if comp['numberOfPlaces']|int >0 %}
+                    <a class="btn btn-sm btn-primary" href="{{ url_for('book',competition=comp['name'],club=club['name']) }}">Book Places</a>
+                    {%endif%}
+                </div>
+            </li>
+            <hr />
+            {% endfor %}
+        </ul>
+        {%endwith%}
+    </div>
 </body>
 </html>

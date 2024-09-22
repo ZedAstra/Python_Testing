@@ -2,16 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
     <title>GUDLFT Registration</title>
 </head>
 <body>
-    <h1>Welcome to the GUDLFT Registration Portal!</h1>
-    Please enter your secretary email to continue:
-    <form action="summary" method="post">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id=""/>
-        <button type="submit">Enter</button>
-    </form>
-    <a href="/pointsdisplay"><h3>Click here to see the club point table</h3></a>
+    <div class="flex flex-col items-center justify-center h-screen">
+        <h1>Welcome to the GUDLFT Registration Portal!</h1>
+        Please enter your secretary email to continue:
+        <form class="card bg-neutral shadow-xl p-8 w-96 gap-2" action="summary" method="post">
+            <label class="label" for="email">Email:</label>
+            <input class="input input-bordered input-sm" type="email"  name="email" id="" placeholder="Enter your email" required>
+            <button class="btn btn-sm btn-primary" type="submit">Enter</button>
+        </form>
+        <a class="btn btn-sm btn-primary" href="/pointsdisplay">Click here to see the club point table</a>
+    </div>
 </body>
 </html>

@@ -127,6 +127,9 @@ def purchasePlaces():
         if places == '':
             places = "0"
         placesRequired = int(places)
+        if placesRequired < 1:
+            flash("You need to book at least one place")
+            return redirect(request.full_url)
         if competition.numberOfPlaces < placesRequired:
             flash("Not enough places available")
             return redirect(request.full_url)

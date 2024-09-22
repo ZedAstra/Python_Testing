@@ -2,20 +2,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
     <title>GUDLFT Points display</title>
 </head>
-<body>
-    <!--Equivalent of Svelte's 
-{each clubs as club}
-    <p>{club.email} has {club.points} points</p>
-{/each}-->
+<body class="p-8">
     <h2>Points Summary</h2>
-    <ul>
-        {% for club in clubs %}
-        <li>{{club.name}} has {{club.points}} points</li>
-        {% endfor %}
-    </ul>
-    <a href="{{url_for('pointsDisplay')}}">Refresh</a>
-    <a href="{{url_for('summary')}}">Back</a>
+    <a class="btn btn-sm btn-primary" href="{{url_for('summary')}}">Back</a>
+    <div class="overflow-x-auto card bg-neutral shadow-xl">
+        <table class="table">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th></th>
+              <th>Club</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+            <!-- body -->
+            <tbody>
+                {% for club in clubs %}
+                <tr>
+                    <td></td>
+                    <td>{{club.name}}</td>
+                    <td>{{club.points}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-sm btn-primary" href="{{url_for('pointsDisplay')}}">Refresh</a>
+    </div>
 </body>
 </html>
