@@ -83,8 +83,13 @@ def summary():
                     return res
                 else:
                     res = Response(render_template('welcome.html',club=club,competitions=competitions))
-                    res.headers["Set-Cookie"] = "authentication="+str(q[0].token)
-                    return res
+                    if q[0].valid_until < datetime.now():
+                        q[0].delete()
+                        res.headers["Set-Cookie"] = create_cookie(club)
+                        return res
+                    else:
+                        res.headers["Set-Cookie"] = "authentication="+str(q[0].token)
+                        return res
             else:
                 club = None
                 flash("No club found with this email")
@@ -107,11 +112,11 @@ def book(competition,club):
         m = min(12, foundCompetition.numberOfPlaces)
         return render_template('booking.html',club=foundClub,competition=foundCompetition,max=m)
     else:
-        flash("Something went wrong-please try again")
+        flash("Something went wrong. Please try again")
         return render_template('welcome.html', club=club, competitions=competitions)
 
 
-@app.route('/purchasePlaces',methods=['POST'])
+@app.route('/purchaseplaces',methods=['POST'])
 def purchasePlaces():
     competitions = models.Competition.select()
     q1 = (models.Competition()

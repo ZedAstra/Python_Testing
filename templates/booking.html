@@ -9,7 +9,7 @@
     <div class="flex flex-col items-center justify-center h-screen">
         <h2>{{competition['name']}}</h2>
         Places available: {{competition['numberOfPlaces']}}
-        <form class="card bg-neutral shadow-xl p-8 w-96 gap-2" action="/purchasePlaces" method="post">
+        <form class="card bg-neutral shadow-xl p-8 w-96 gap-2" action="/purchaseplaces" method="post">
             <input type="hidden" name="club" value="{{club['name']}}">
             <input type="hidden" name="competition" value="{{competition['name']}}">
             <label class="label" for="places">How many places?</label>
